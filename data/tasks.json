@@ -12,19 +12,5 @@
             "summary": "new update",
             "priority": 2
         }
-    },
-    {
-        "id": 4,
-        "task": {
-            "summary": "New task",
-            "priority": 2
-        }
-    },
-    {
-        "id": 5,
-        "task": {
-            "summary": "task from API",
-            "priority": 2
-        }
     }
 ]
