@@ -27,9 +27,12 @@ async def get_tasks(id: Optional[int] = 0):
     Args:
         id (Optional[int], optional): [id of a task]. Defaults to 0.
     """
-    tasks = parse_file_as(List[TaskList], 'data/tasks.json')
+    tasks = parse_file_as(List[TaskList], "data/tasks.json")
     data = {task.id: task.dict() for task in tasks}
-    response = data if id == 0 else data[id]
+    try:
+        response = data if id == 0 else data[id]
+    except: 
+        response = 'Does not exist any task with that ID' 
     return response
 
 
@@ -70,11 +73,13 @@ async def update_task(id: int, new_task: Task):
         id (int): [id of a task that desire update]
         new_task (Task): [task objec that override the old task]
     """
-    tasks = parse_file_as(List[TaskList], 'data/tasks.json')
+    tasks = parse_file_as(List[TaskList], "data/tasks.json")
     data = [task.dict() for task in tasks]
     for task in data:
-        if task['id'] == id:
-            task['task'] == new_task.dict()
-    await data_to_json(data)        
+        if task["id"] == id:
+            task["task"] = new_task.dict()
+
+    await data_to_json(data)
+
     return id
     
